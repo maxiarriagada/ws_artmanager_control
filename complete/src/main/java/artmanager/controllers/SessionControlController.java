@@ -13,7 +13,7 @@ import artmanager.dto.Response;
 import artmanager.dto.User;
 import artmanager.entity.SessionControl;
 import artmanager.services.SessionService;
-import artmanager.services.UserLogService;
+import artmanager.services.UserService;
 
 @CrossOrigin
 @RestController
@@ -24,20 +24,24 @@ public class SessionControlController {
 	SessionService sessionService;
 
 	@Autowired
-	UserLogService userLogService;
+	UserService userLogService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<Response> login(@RequestBody User user) {
 
 		Response response = null;
 
-		try {
+		/*try {
+			SessionControl session = null;
+			if(user.getUsername().equals(user.getPreventorname())){
+				session = sessionService.get(user.getCompany(),user.getCompany());
+			}else{
+				session = sessionService.get(user.getCompany(),user.getUsername());	
+			}
 			
-			SessionControl session = sessionService.get(user.getCompany());
-
 			if (session != null) {
 				// chequeo
-				User userLog = userLogService.get(user);
+				User userLog = userLogService.getByPreventorName(user);
 
 				if (userLog != null) {// esta
 					if (userLog.getLogoutdate() != null) {// no esta activo
@@ -45,7 +49,7 @@ public class SessionControlController {
 							session.setActivesessions(session.getActivesessions() + 1);
 							if (session.getActivesessions() <= session.getAllowedsessions()) {
 								sessionService.updateActiveSession(session);
-								userLogService.logLogin(user);
+								userLogService.logUser(user);
 								response = Response.OK;
 							} else {
 								response = Response.EXCEEDED_SESSIONS;
@@ -54,7 +58,7 @@ public class SessionControlController {
 							session.setActivesessions(session.getActivesessions() + 1);
 							if (session.getActivesessions() <= session.getAllowedsessions()) {
 								sessionService.updateActiveSession(session);
-								userLogService.logLogin(user);
+								userLogService.logUser(user);
 								
 								response = Response.OK;
 							} else {
@@ -68,10 +72,10 @@ public class SessionControlController {
 					}
 
 				} else {
-					session.setActivesessions(session.getActivesessions() + 1);
+					session.setActivesessions(session.getActivesessions() + 1);					
 					if (session.getActivesessions() <= session.getAllowedsessions()) {
 						sessionService.updateActiveSession(session);
-						userLogService.logLogin(user);
+						userLogService.logUser(user);
 						response = Response.OK;
 					} else {
 						response = Response.EXCEEDED_SESSIONS;
@@ -85,7 +89,7 @@ public class SessionControlController {
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
-
+*/
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 
 	}
@@ -96,12 +100,18 @@ public class SessionControlController {
 		Boolean response = false;
 
 		try {
-			SessionControl session = sessionService.get(user.getCompany());
+			SessionControl session = null;
+			if(user.getUsername().equals(user.getPreventorname())){
+				//session = sessionService.get(user.getCompany(),user.getCompany());
+			}else{
+				//session = sessionService.get(user.getCompany(),user.getUsername());	
+			}
+			
 			if (session != null) {
 				session.setActivesessions(session.getActivesessions() - 1);
 				if (session.getActivesessions() >= 0) {
-					sessionService.updateActiveSession(session);
-					userLogService.logLogin(user);
+					//sessionService.updateActiveSession(session);
+					//userLogService.logUser(user);
 					response = true;
 				}
 			}
@@ -110,6 +120,21 @@ public class SessionControlController {
 			System.out.println(ex);
 		}
 		return new ResponseEntity<Boolean>(response, HttpStatus.OK);
+
+	}
+	
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public ResponseEntity<Response> create(@RequestBody User user) {
+
+		Response response = null;
+
+		try {
+			
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return new ResponseEntity<Response>(response, HttpStatus.OK);
 
 	}
 

@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import artmanager.entity.SessionControl;
+import artmanager.dto.SessionControl;
 import artmanager.repository.SessionControlRepository;
 
 @Service
@@ -17,12 +17,13 @@ public class SessionServiceImp implements SessionService{
 	SessionControlRepository sessionControlRepository;
 	
 	public SessionControl get(String company) {
-		return sessionControlRepository.get(company);
+		return new SessionControl(sessionControlRepository.get(company));
 	}
 
 	@Override
 	public Boolean updateActiveSession(SessionControl session) {
-		 sessionControlRepository.save(session);
+		artmanager.entity.SessionControl sessionE = new artmanager.entity.SessionControl(session);
+		 sessionControlRepository.save(sessionE);
 		 return Boolean.TRUE;
 	}
 	

@@ -1,6 +1,6 @@
 package artmanager.services;
 
-import artmanager.entity.SessionControl;
+import artmanager.dto.SessionControl;
 
 public interface SessionService {
 

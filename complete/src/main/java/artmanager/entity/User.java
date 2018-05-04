@@ -1,32 +1,66 @@
-package artmanager.dto;
+package artmanager.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class User {
+@Entity
+@Table(name="User")
+public class User implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(unique=true)
 	private Long uid;
+	@Column
 	private String username;
+	@Column(unique=true,nullable = true)
 	private String preventorname;
+	@Column
 	private String password;
+	@Column
 	private String imei;
+	@Column
 	private String logindate;
+	@Column
 	private String logoutdate;
+	@Column
 	private String role;
+	@Column
 	private String token;
+	@Column
 	private Boolean isdelete;
+	@Column
 	private String createdate;
+	@Column
 	private String deletedate;
+	@Column
 	private String company;
-	
-	private Response response;
-	
-	
-	public User() {
-		
+
+	public Long getUid() {
+		return uid;
 	}
+
+	public void setUid(Long uid) {
+		this.uid = uid;
+	}
+
+	public User(){}
 	
-	public User(artmanager.entity.User user) {
+	public User(artmanager.dto.User user){
+	
 		if(user!=null){
 			if(user.getId()!=null){this.setId(user.getId());}
 			if(user.getUid()!=null){this.setUid(user.getUid());}
@@ -38,12 +72,12 @@ public class User {
 			if(user.getLogoutdate()!=null){this.setLogoutdate(user.getLogoutdate());}
 			if(user.getRole()!=null){this.setRole(user.getRole());}		
 			if(user.getToken()!=null){this.setToken(user.getToken());}
-
+			
 			if(user.getCreatedate()!=null){this.setCreatedate(user.getCreatedate());}
 			if(user.getDeletedate()!=null){this.setDeletedate(user.getDeletedate());}
 			if(user.getIsdelete()!=null){this.setIsdelete(user.getIsdelete());}
 			
-			if(user.getCompany()!=null){this.setCompany(user.getCompany());}	
+			if(user.getCompany()!=null){this.setCompany(user.getCompany());}
 		}
 	}
 	
@@ -54,35 +88,21 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public Long getUid() {
-		return uid;
-	}
 
-	public void setUid(Long uid) {
-		this.uid = uid;
-	}
-
-	
-	
-	
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getImei() {
-		return imei;
-	}
-	public void setImei(String imei) {
-		this.imei = imei;
 	}
 
 	public String getLogindate() {
@@ -109,6 +129,14 @@ public class User {
 		this.preventorname = preventorname;
 	}
 
+	public String getImei() {
+		return imei;
+	}
+
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -133,14 +161,6 @@ public class User {
 		this.isdelete = isdelete;
 	}
 
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
 	public String getCreatedate() {
 		return createdate;
 	}
@@ -157,14 +177,11 @@ public class User {
 		this.deletedate = deletedate;
 	}
 
-	public Response getResponse() {
-		return response;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setResponse(Response response) {
-		this.response = response;
+	public void setCompany(String company) {
+		this.company = company;
 	}
-	
-	
-
 }
