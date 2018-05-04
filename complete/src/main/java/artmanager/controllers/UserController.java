@@ -65,6 +65,7 @@ public class UserController {
 									userService.create(usersession);
 									sessionService.updateActiveSession(session);
 									loginSuccess = Boolean.TRUE;
+									
 								} else {
 									usersession.setResponse(Response.EXCEEDED_SESSIONS);
 								}
@@ -108,9 +109,11 @@ public class UserController {
 				usersession.setId(null);
 				usersession.setImei(null);
 				usersession.setUsername(null);
+			}else{
+				usersession.setResponse(Response.LOG_OK);
 			}
-
 			usersession.setPassword(null);
+			
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
@@ -152,6 +155,7 @@ public class UserController {
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	List<User> getAll() {
+		System.out.println("getAll");
 		return userService.getAll();
 	}
 
@@ -174,6 +178,7 @@ public class UserController {
 			
 			if (userAux==null || userAux.getId()==null) {
 				user = userService.create(user);
+				user.setResponse(Response.USER_CREATE_SUCCESS);
 			} else {
 				user.setResponse(Response.INVALID_PREVENTOR_NAME);
 			}
@@ -194,7 +199,7 @@ public class UserController {
 			User userAux = userService.getByPreventorName(user);
 			if(userAux.getId()==null || (userAux.getId()!=null && userAux.getId().equals(user.getId())) ){
 				userdto = userService.update(user);
-				userdto.setResponse(Response.INVALID_PREVENTOR_NAME);
+				userdto.setResponse(Response.USER_UPDATE_SUCCESS);
 			}else{
 				userdto= user;
 				userdto.setId(null);
@@ -215,7 +220,7 @@ public class UserController {
 
 		try {
 			userService.delete(user);
-
+			user.setResponse(Response.USER_DELETE_SUCCESS);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
