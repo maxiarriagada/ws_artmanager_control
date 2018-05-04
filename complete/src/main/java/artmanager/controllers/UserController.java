@@ -191,7 +191,16 @@ public class UserController {
 		System.out.println("update");
 		User userdto = null;
 		try {
-			userdto = userService.update(user);
+			User userAux = userService.getByPreventorName(user);
+			if(userAux.getId()==null || (userAux.getId()!=null && userAux.getId().equals(user.getId())) ){
+				userdto = userService.update(user);
+				userdto.setResponse(Response.INVALID_PREVENTOR_NAME);
+			}else{
+				userdto= user;
+				userdto.setId(null);
+				userdto.setResponse(Response.INVALID_PREVENTOR_NAME);
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -20,7 +20,8 @@ public enum Response {
 	
 	RROR_PREVENTORNAME("ERROR_PREVENTORNAME", "Nombre preventor incorrecto"),
 	ERROR_USERNAME("ERROR_USERNAME", "Nombre usuario incorrecto"),
-	ERROR_PASSWORD("ERROR_PASSWORD", "Contraseña incorrecta");
+	ERROR_PASSWORD("ERROR_PASSWORD", "Contraseña incorrecta"),
+	SUCCESS("SUCCESS", "");
 	
 
 	private  String value;
