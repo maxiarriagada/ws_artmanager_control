@@ -30,10 +30,12 @@ public class SessionControl implements Serializable {
 	public SessionControl(){}
 	
 	public SessionControl(artmanager.dto.SessionControl session){
-		if(session.getActive()!=null){this.setActive(session.getActive());}
-		if(session.getActivesessions()!=null){this.setActivesessions(session.getActivesessions());}
-		if(session.getAllowedsessions()!=null){this.setAllowedsessions(session.getAllowedsessions());}
-		if(session.getCompany()!=null){this.setCompany(session.getCompany());}
+		if(session!=null){
+			if(session.getActive()!=null){this.setActive(session.getActive());}
+			if(session.getActivesessions()!=null){this.setActivesessions(session.getActivesessions());}
+			if(session.getAllowedsessions()!=null){this.setAllowedsessions(session.getAllowedsessions());}
+			if(session.getCompany()!=null){this.setCompany(session.getCompany());}
+		}
 	}
 
 	public String getCompany() {
