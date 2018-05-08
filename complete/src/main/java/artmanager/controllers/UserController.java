@@ -45,9 +45,10 @@ public class UserController {
 
 			if (user.getRole() != null && user.getRole().equals("preventor")) {
 
-				session = sessionService.get(user.getCompany());
 				user.setPreventorname(UtilBase64.decode(user.getPreventorname()));
 				usersession = userService.getByPreventorName(user);
+				session = sessionService.get(usersession.getCompany());
+				
 
 				if (usersession != null && usersession.getId() != null && usersession.getIsdelete()!=Boolean.TRUE) {
 					if (usersession.getPassword() != null && usersession.getPassword().equals(user.getPassword())) {
@@ -204,6 +205,31 @@ public class UserController {
 				userdto= user;
 				userdto.setId(null);
 				userdto.setResponse(Response.INVALID_PREVENTOR_NAME);
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<User>(userdto, HttpStatus.OK);
+
+	}
+	
+	
+	@RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
+	public ResponseEntity<User> changepassword(@RequestBody User user) {
+		System.out.println("changepassword");
+		User userdto = null;
+		try {
+			User userAux = userService.get(user.getId());
+			if(userAux!=null && userAux.getId()!=null && userAux.getId().equals(user.getId())){
+				userAux.setPassword(user.getPassword());
+				userdto = userService.update(userAux);
+				userdto.setResponse(Response.USER_UPDATE_PASSWORD_SUCCESS);
+			}else{
+				userdto= user;
+				userdto.setId(null);
+				userdto.setResponse(Response.USER_UPDATE_PASSWORD_ERROR);
 			}
 			
 

@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Response {
 	//SESSION
-	LOG_OK("LOG_OK", "Logueo Exitoso"),
+	LOG_OK("LOG_OK", "Logueo exitoso"),
 	LOG_ERROR("LOG_ERROR", "Logueo fallido"), 
 	COMPANY_NOT_FOUND("COMPANY_NOT_FOUND", "Empresa no disponible"), 
-	EXCEEDED_SESSIONS("EXCEEDED_SESSIONS", "Exede usuarios permitidos"), 
+	EXCEEDED_SESSIONS("EXCEEDED_SESSIONS", "Excede usuarios permitidos"), 
 	INVALID_PHONE("INVALID_PHONE","No puede iniciar sesión desde otro teléfono"), 
 	ACTIVE_SESSION("ACTIVE_SESSION", "Registra una sesión activa"),
 	
@@ -22,6 +22,8 @@ public enum Response {
 	USER_UPDATE_ERROR("USER_UPDATE_ERROR", "Actualización fallida"),
 	USER_DELETE_SUCCESS("USER_DELETE_SUCCESS", "Usuario eliminado"),
 	USER_DELETE_ERROR("USER_DELETE_ERROR", "Eliminación fallida"),
+	USER_UPDATE_PASSWORD_SUCCESS("USER_UPDATE_PASSWORD_SUCCESS", "Cambio contraseña exitoso"),
+	USER_UPDATE_PASSWORD_ERROR("USER_UPDATE_PASSWORD_ERROR", "Cambio contraseña fallido"),
 	
 	//VALIDATOR
 	VALID_PREVENTOR_NAME("VALID_PREVENTOR_NAME", "Nombre preventor valido"),
