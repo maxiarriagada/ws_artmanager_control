@@ -221,18 +221,24 @@ public class UserController {
 		System.out.println("changepassword");
 		User userdto = null;
 		try {
-			User userAux = userService.get(user.getId());
-			if(userAux!=null && userAux.getId()!=null && userAux.getId().equals(user.getId())){
-				userAux.setPassword(user.getPassword());
-				userdto = userService.update(userAux);
-				userdto.setResponse(Response.USER_UPDATE_PASSWORD_SUCCESS);
+			if(user!=null && user.getId()!=null && user.getPassword()!=null){
+				User userAux = userService.get(user.getId());
+				
+				if(userAux!=null && userAux.getId()!=null && userAux.getId().equals(user.getId())){
+					userAux.setPassword(UtilBase64.decode(user.getPassword()));
+					userdto = userService.update(userAux);
+					userdto.setResponse(Response.USER_UPDATE_PASSWORD_SUCCESS);
+				}else{
+					userdto= user;
+					userdto.setId(null);
+					userdto.setResponse(Response.USER_UPDATE_PASSWORD_ERROR);
+				}
+			
 			}else{
 				userdto= user;
 				userdto.setId(null);
 				userdto.setResponse(Response.USER_UPDATE_PASSWORD_ERROR);
 			}
-			
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
