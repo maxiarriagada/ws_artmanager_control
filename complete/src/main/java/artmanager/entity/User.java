@@ -25,6 +25,14 @@ public class User implements Serializable {
 	@Column(unique=true)
 	private Long uid;
 	@Column
+	private String name;
+	@Column
+	private String lastname;
+	@Column
+	private String email;
+	@Column
+	private String phone;
+	@Column
 	private String username;
 	@Column(unique=true,nullable = true)
 	private String preventorname;
@@ -64,6 +72,10 @@ public class User implements Serializable {
 		if(user!=null){
 			if(user.getId()!=null){this.setId(user.getId());}
 			if(user.getUid()!=null){this.setUid(user.getUid());}
+			if(user.getName()!=null){this.setName(user.getName());}
+			if(user.getLastname()!=null){this.setLastname(user.getLastname());}
+			if(user.getEmail()!=null){this.setEmail(user.getEmail());}
+			if(user.getPhone()!=null){this.setPhone(user.getPhone());}
 			if(user.getUsername()!=null){this.setUsername(user.getUsername());}
 			if(user.getPreventorname()!=null){this.setPreventorname(user.getPreventorname());}
 			if(user.getPassword()!=null){this.setPassword(user.getPassword());}
@@ -183,5 +195,37 @@ public class User implements Serializable {
 
 	public void setCompany(String company) {
 		this.company = company;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

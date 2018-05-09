@@ -1,5 +1,7 @@
 package artmanager.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,65 +33,7 @@ public class SessionControlController {
 
 		Response response = null;
 
-		/*try {
-			SessionControl session = null;
-			if(user.getUsername().equals(user.getPreventorname())){
-				session = sessionService.get(user.getCompany(),user.getCompany());
-			}else{
-				session = sessionService.get(user.getCompany(),user.getUsername());	
-			}
-			
-			if (session != null) {
-				// chequeo
-				User userLog = userLogService.getByPreventorName(user);
-
-				if (userLog != null) {// esta
-					if (userLog.getLogoutdate() != null) {// no esta activo
-						if (userLog.getImei() != null && userLog.getImei().equals(user.getImei())) {
-							session.setActivesessions(session.getActivesessions() + 1);
-							if (session.getActivesessions() <= session.getAllowedsessions()) {
-								sessionService.updateActiveSession(session);
-								userLogService.logUser(user);
-								response = Response.OK;
-							} else {
-								response = Response.EXCEEDED_SESSIONS;
-							}
-						} else if (userLog.getImei() == null) {
-							session.setActivesessions(session.getActivesessions() + 1);
-							if (session.getActivesessions() <= session.getAllowedsessions()) {
-								sessionService.updateActiveSession(session);
-								userLogService.logUser(user);
-								
-								response = Response.OK;
-							} else {
-								response = Response.EXCEEDED_SESSIONS;
-							}
-						} else if (!userLog.getImei().equals(user.getImei())) {
-							response = Response.INVALID_PHONE;
-						}
-					} else {
-						response = Response.ACTIVE_SESSION;
-					}
-
-				} else {
-					session.setActivesessions(session.getActivesessions() + 1);					
-					if (session.getActivesessions() <= session.getAllowedsessions()) {
-						sessionService.updateActiveSession(session);
-						userLogService.logUser(user);
-						response = Response.OK;
-					} else {
-						response = Response.EXCEEDED_SESSIONS;
-					}
-				}
-
-			} else {
-				response = Response.COMPANY_NOT_FOUND;
-			}
-
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
-*/
+		
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 
 	}
@@ -99,33 +43,14 @@ public class SessionControlController {
 
 		Boolean response = false;
 
-		try {
-			SessionControl session = null;
-			if(user.getUsername().equals(user.getPreventorname())){
-				//session = sessionService.get(user.getCompany(),user.getCompany());
-			}else{
-				//session = sessionService.get(user.getCompany(),user.getUsername());	
-			}
-			
-			if (session != null) {
-				session.setActivesessions(session.getActivesessions() - 1);
-				if (session.getActivesessions() >= 0) {
-					//sessionService.updateActiveSession(session);
-					//userLogService.logUser(user);
-					response = true;
-				}
-			}
-
-		} catch (Exception ex) {
-			System.out.println(ex);
-		}
+	
 		return new ResponseEntity<Boolean>(response, HttpStatus.OK);
 
 	}
 	
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Response> create(@RequestBody User user) {
+	public ResponseEntity<Response> create(@RequestBody SessionControl sessionControl) {
 
 		Response response = null;
 
@@ -136,6 +61,41 @@ public class SessionControlController {
 		}
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ResponseEntity<Response> update(@RequestBody SessionControl sessionControl) {
+
+		Response response = null;
+
+		try {
+			
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return new ResponseEntity<Response>(response, HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ResponseEntity<Response> delete(@RequestBody SessionControl sessionControl) {
+
+		Response response = null;
+
+		try {
+			
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return new ResponseEntity<Response>(response, HttpStatus.OK);
+
+	}
+	
+	
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	List<SessionControl> getAll() {
+		System.out.println("getAll");
+		return null;//userService.getAll();
 	}
 
 }

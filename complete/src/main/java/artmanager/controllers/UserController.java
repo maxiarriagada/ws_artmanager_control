@@ -63,6 +63,7 @@ public class UserController {
 								if (session.getActivesessions() <= session.getAllowedsessions()) {
 									usersession.setImei(user.getImei());
 									usersession.setLogindate(this.getCurrentDate());
+									usersession.setUrlws(session.getUrlws());
 									userService.create(usersession);
 									sessionService.updateActiveSession(session);
 									loginSuccess = Boolean.TRUE;

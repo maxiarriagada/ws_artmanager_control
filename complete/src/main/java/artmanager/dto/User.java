@@ -1,11 +1,13 @@
 package artmanager.dto;
 
-import javax.persistence.Column;
-
 public class User {
 	
 	private Long id;
 	private Long uid;
+	private String name;
+	private String lastname;
+	private String email;
+	private String phone;
 	private String username;
 	private String preventorname;
 	private String password;
@@ -20,7 +22,7 @@ public class User {
 	private String company;
 	
 	private Response response;
-	
+	private String urlws;
 	
 	public User() {
 		
@@ -30,6 +32,10 @@ public class User {
 		if(user!=null){
 			if(user.getId()!=null){this.setId(user.getId());}
 			if(user.getUid()!=null){this.setUid(user.getUid());}
+			if(user.getName()!=null){this.setName(user.getName());}
+			if(user.getLastname()!=null){this.setLastname(user.getLastname());}
+			if(user.getEmail()!=null){this.setEmail(user.getEmail());}
+			if(user.getPhone()!=null){this.setPhone(user.getPhone());}
 			if(user.getUsername()!=null){this.setUsername(user.getUsername());}
 			if(user.getPreventorname()!=null){this.setPreventorname(user.getPreventorname());}
 			if(user.getPassword()!=null){this.setPassword(user.getPassword());}
@@ -163,6 +169,46 @@ public class User {
 
 	public void setResponse(Response response) {
 		this.response = response;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getUrlws() {
+		return urlws;
+	}
+
+	public void setUrlws(String urlws) {
+		this.urlws = urlws;
 	}
 	
 	

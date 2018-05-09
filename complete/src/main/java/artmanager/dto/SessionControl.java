@@ -8,6 +8,7 @@ public class SessionControl {
 	private Integer activesessions;
 	private Integer allowedsessions;
 	private Boolean active;
+	private String urlws;
 	
 	public SessionControl(artmanager.entity.SessionControl session){
 		if(session!=null){
@@ -15,6 +16,7 @@ public class SessionControl {
 			if(session.getActivesessions()!=null){this.setActivesessions(session.getActivesessions());}
 			if(session.getAllowedsessions()!=null){this.setAllowedsessions(session.getAllowedsessions());}
 			if(session.getCompany()!=null){this.setCompany(session.getCompany());}
+			if(session.getUrlws()!=null){this.setUrlws(session.getUrlws());}
 		}
 	}
 
@@ -48,6 +50,14 @@ public class SessionControl {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public String getUrlws() {
+		return urlws;
+	}
+
+	public void setUrlws(String urlws) {
+		this.urlws = urlws;
 	}
 	
 }

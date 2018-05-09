@@ -25,6 +25,8 @@ public class SessionControl implements Serializable {
 	private Integer allowedsessions;
 	@Column
 	private Boolean active;
+	@Column
+	private String urlws;
 
 	
 	public SessionControl(){}
@@ -35,6 +37,7 @@ public class SessionControl implements Serializable {
 			if(session.getActivesessions()!=null){this.setActivesessions(session.getActivesessions());}
 			if(session.getAllowedsessions()!=null){this.setAllowedsessions(session.getAllowedsessions());}
 			if(session.getCompany()!=null){this.setCompany(session.getCompany());}
+			if(session.getUrlws()!=null){this.setUrlws(session.getUrlws());}
 		}
 	}
 
@@ -68,5 +71,13 @@ public class SessionControl implements Serializable {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public String getUrlws() {
+		return urlws;
+	}
+
+	public void setUrlws(String urlws) {
+		this.urlws = urlws;
 	}
 }
